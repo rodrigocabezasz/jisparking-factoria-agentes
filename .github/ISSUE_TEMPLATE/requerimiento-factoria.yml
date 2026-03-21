@@ -1,0 +1,151 @@
+name: Requerimiento de Desarrollo
+about: Registro formal de requerimiento para la factoria de agentes
+title: "[REQ] <modulo> <resumen>"
+labels: ["type:feature", "status:backlog"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Completa esta plantilla para habilitar intake de calidad, DTR consistente y trazabilidad en Kanban.
+
+  - type: input
+    id: request_id
+    attributes:
+      label: Request ID
+      description: Formato esperado REQ-YYYYMMDD-0000
+      placeholder: REQ-20260321-0001
+    validations:
+      required: true
+
+  - type: dropdown
+    id: site
+    attributes:
+      label: Sitio impactado
+      options:
+        - IntraJIS
+        - JISReportes
+        - Integracion
+        - Infra
+    validations:
+      required: true
+
+  - type: dropdown
+    id: module
+    attributes:
+      label: Modulo
+      options:
+        - auth
+        - ventas
+        - facturacion
+        - contabilidad
+        - pagos
+        - dashboard
+        - api
+        - infra
+        - db
+        - otro
+    validations:
+      required: true
+
+  - type: dropdown
+    id: priority
+    attributes:
+      label: Prioridad
+      options:
+        - P0
+        - P1
+        - P2
+        - P3
+    validations:
+      required: true
+
+  - type: dropdown
+    id: impact
+    attributes:
+      label: Impacto de negocio
+      options:
+        - bloqueante
+        - alto
+        - medio
+        - bajo
+    validations:
+      required: true
+
+  - type: textarea
+    id: summary
+    attributes:
+      label: Resumen normalizado
+      description: Una frase clara del problema y del resultado esperado.
+      placeholder: Dashboard de recaudacion diaria con alertas de desviacion > 15 por ciento.
+    validations:
+      required: true
+
+  - type: textarea
+    id: business_context
+    attributes:
+      label: Contexto de negocio
+      description: Describe por que importa y a quien afecta.
+      placeholder: Operaciones necesita detectar desviaciones de recaudacion por sucursal para actuar en el mismo dia.
+    validations:
+      required: true
+
+  - type: textarea
+    id: scope
+    attributes:
+      label: Alcance
+      description: Que entra y que no entra en este requerimiento.
+      placeholder: |
+        Incluye:
+        - Endpoint de metricas de recaudacion diaria
+        - Vista de dashboard por sucursal
+        No incluye:
+        - Cambios de arquitectura de pagos
+    validations:
+      required: true
+
+  - type: textarea
+    id: acceptance_criteria
+    attributes:
+      label: Criterios de aceptacion (Given/When/Then)
+      description: Define criterios verificables.
+      placeholder: |
+        - Given una sucursal con recaudacion historica, When se consulta el dashboard diario, Then se muestra variacion porcentual.
+        - Given desviacion mayor a 15 por ciento, When se recalcula el indicador, Then se marca alerta critica.
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: security_flags
+    attributes:
+      label: Flags de seguridad/compliance
+      options:
+        - label: pii
+        - label: finanzas
+        - label: credenciales
+        - label: acceso
+        - label: fraude
+        - label: none
+
+  - type: input
+    id: dtr_link
+    attributes:
+      label: Ruta o enlace DTR
+      placeholder: runs/dtr/REQ-20260321-0001.md
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: definition_of_ready
+    attributes:
+      label: Definition of Ready (DoR)
+      options:
+        - label: Existe contexto de negocio suficiente
+          required: true
+        - label: Hay alcance y no alcance definido
+          required: true
+        - label: Criterios de aceptacion verificables
+          required: true
+        - label: Riesgos principales identificados
+          required: true
+        - label: Modulo y sitio objetivo definidos
+          required: true

@@ -1,0 +1,9 @@
+trigger,event_condition,automation_action,project_state,notes
+issue_created,label contains status:backlog,set field State=Backlog,Backlog,aplica a intake inicial
+issue_labeled,label added status:ready,set field State=Ready,Ready,listo para tomar
+issue_labeled,label added status:in-progress,set field State=In Progress,In Progress,ejecucion tecnica iniciada
+pull_request_opened,linked issue exists,set field State=In Review,In Review,codigo en revision
+pull_request_merged,linked issue exists,set field State=QA,QA,espera validacion QA
+issue_labeled,label added qa:passed,set field State=Done,Done,cierre funcional validado
+issue_labeled,label added status:blocked,set field State=Blocked,Blocked,requiere desbloqueo
+issue_closed,no open PR and qa:passed,set field State=Done,Done,cierre administrativo final
