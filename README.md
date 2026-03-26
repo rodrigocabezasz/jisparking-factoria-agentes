@@ -175,6 +175,3 @@ GitHub mostrará un enlace para abrir **Pull Request** desde `factoria/<REQ-ID>`
 
 ---
 
-*README de flujo factoría — pensado para publicarse como **`README.md` en la raíz** de [jisparking-factoria-agentes](https://github.com/rodrigocabezasz/jisparking-factoria-agentes).*
-
-**Nota:** Si trabajás en un monorepo distinto, ejecutá `scripts/sync-jisparking-factoria-repo.ps1 -TargetRepoRoot <ruta_al_clone>` y luego `git add`, `commit` y `push` en ese clon. Así quedan alineados README, `factoria/`, `scripts/` y `.agents/Req_JIS/`.
