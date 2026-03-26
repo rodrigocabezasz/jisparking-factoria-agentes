@@ -1,0 +1,113 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "JIS Intake Message",
+  "type": "object",
+  "required": [
+    "request_id",
+    "source",
+    "reporter",
+    "received_at",
+    "message",
+    "business_context",
+    "priority",
+    "module",
+    "security_flags",
+    "sla_target",
+    "tracking"
+  ],
+  "properties": {
+    "request_id": { "type": "string", "minLength": 3 },
+    "source": {
+      "type": "object",
+      "required": ["channel", "message_id", "chat_id"],
+      "properties": {
+        "channel": { "type": "string" },
+        "message_id": { "type": ["string", "number"] },
+        "chat_id": { "type": ["string", "number"] }
+      }
+    },
+    "reporter": {
+      "type": "object",
+      "required": ["name", "role", "contact"],
+      "properties": {
+        "name": { "type": "string" },
+        "role": { "type": "string" },
+        "contact": { "type": "string" }
+      }
+    },
+    "received_at": { "type": "string", "format": "date-time" },
+    "message": {
+      "type": "object",
+      "required": ["raw_text", "normalized_summary"],
+      "properties": {
+        "raw_text": { "type": "string" },
+        "normalized_summary": { "type": "string" }
+      }
+    },
+    "business_context": {
+      "type": "object",
+      "required": ["site", "impact", "expected_outcome"],
+      "properties": {
+        "site": { "type": "string" },
+        "impact": { "type": "string" },
+        "expected_outcome": { "type": "string" }
+      }
+    },
+    "priority": { "type": "string", "enum": ["P1", "P2", "P3", "P4"] },
+    "module": {
+      "type": "string",
+      "enum": [
+        "acceso",
+        "parqueo",
+        "reportes",
+        "pagos",
+        "configuracion",
+        "agentes",
+        "intake",
+        "otro"
+      ]
+    },
+    "security_flags": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "none",
+          "pii",
+          "credentials_exposure",
+          "access_control",
+          "data_integrity",
+          "external_api",
+          "rce",
+          "sqli"
+        ]
+      }
+    },
+    "sla_target": {
+      "type": "object",
+      "required": ["response_hours", "resolution_hours"],
+      "properties": {
+        "response_hours": { "type": "integer", "minimum": 1 },
+        "resolution_hours": { "type": "integer", "minimum": 1 }
+      }
+    },
+    "tracking": {
+      "type": "object",
+      "required": ["status"],
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": [
+            "Backlog",
+            "En revisión",
+            "En progreso",
+            "En pruebas",
+            "Cerrado",
+            "Done",
+            "Blocked"
+          ]
+        }
+      }
+    }
+  }
+}

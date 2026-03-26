@@ -5,6 +5,10 @@ Repositorio en GitHub: [rodrigocabezasz/jisparking-factoria-agentes](https://git
 
 Los entregables de código listos para integración manual se publican aparte en **[jislab-runtime](https://github.com/rodrigocabezasz/jislab-runtime)** (ramas `factoria/<REQ-ID>` y merge a `main`).
 
+**Índice de documentación:** [factoria/INDICE_DOCUMENTACION.md](factoria/INDICE_DOCUMENTACION.md) · **Sincronizar este repo desde el monorepo:** [factoria/PUBLICACION_REPO_GITHUB.md](factoria/PUBLICACION_REPO_GITHUB.md) · Script: `scripts/sync-jisparking-factoria-repo.ps1`.
+
+> **Coherencia:** la guía oficial debe vivir solo en **`factoria/GUIA_OFICIAL_REG_TELEGRAM.md`**. Si existe una copia en la **raíz** del repositorio, eliminala para no romper los enlaces del README.
+
 ---
 
 ## Flujo completo (visión general)
@@ -158,14 +162,19 @@ GitHub mostrará un enlace para abrir **Pull Request** desde `factoria/<REQ-ID>`
 
 | Documento | Contenido |
 |-----------|-----------|
+| [factoria/INDICE_DOCUMENTACION.md](factoria/INDICE_DOCUMENTACION.md) | Índice navegable de toda la documentación factoría. |
+| [factoria/PUBLICACION_REPO_GITHUB.md](factoria/PUBLICACION_REPO_GITHUB.md) | Auditoría, árbol mínimo y cómo publicar con el script PowerShell. |
 | [factoria/GUIA_OFICIAL_REG_TELEGRAM.md](factoria/GUIA_OFICIAL_REG_TELEGRAM.md) | Cómo redactar un `/reg` (oficial). |
 | [factoria/GOVERNANCE_STATE_ACTORS.md](factoria/GOVERNANCE_STATE_ACTORS.md) | Actores Dev_JIS, cola, `AUTO_ENQUEUE_DEV_JIS`. |
 | [factoria/openclaw-jislab-map.md](factoria/openclaw-jislab-map.md) | Rutas de `openclaw.json` y enlaces útiles. |
 | [factoria/WEB_REG_Y_OPENCLAW.md](factoria/WEB_REG_Y_OPENCLAW.md) | UI `jis-reg-ui`, OpenClaw, chat web. |
+| [factoria/PASOS_ACTUALIZAR_OPENCLAW.md](factoria/PASOS_ACTUALIZAR_OPENCLAW.md) | Actualizar imagen OpenClaw (quitar aviso de versión). |
+| [factoria/openclaw.json.example](factoria/openclaw.json.example) | Plantilla de gateway/agentes **sin secretos**. |
 | [.agents/Req_JIS/intake-message-schema.json](.agents/Req_JIS/intake-message-schema.json) | Schema JSON del intake completo. |
+| [.agents/Req_JIS/dtr-template.md](.agents/Req_JIS/dtr-template.md) | Plantilla DTR (referencia). |
 
 ---
 
 *README de flujo factoría — pensado para publicarse como **`README.md` en la raíz** de [jisparking-factoria-agentes](https://github.com/rodrigocabezasz/jisparking-factoria-agentes).*
 
-**Nota:** Si trabajás en un monorepo distinto (otra carpeta en tu PC), copiá este archivo a la raíz del clon de `jisparking-factoria-agentes`, reemplazá el README anterior si hace falta, y hacé commit + push. Incluí también la carpeta `factoria/` con `GUIA_OFICIAL_REG_TELEGRAM.md`, `PASOS_ACTUALIZAR_OPENCLAW.md` y el resto de documentos enlazados.
+**Nota:** Si trabajás en un monorepo distinto, ejecutá `scripts/sync-jisparking-factoria-repo.ps1 -TargetRepoRoot <ruta_al_clone>` y luego `git add`, `commit` y `push` en ese clon. Así quedan alineados README, `factoria/`, `scripts/` y `.agents/Req_JIS/`.

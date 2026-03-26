@@ -1,0 +1,88 @@
+{
+  "models": {
+    "providers": {
+      "ollama": {
+        "baseUrl": "http://127.0.0.1:11434",
+        "models": [
+          { "id": "qwen2.5-coder:14b", "name": "Qwen 2.5 Coder 14B" },
+          { "id": "nomic-embed-text:latest", "name": "Nomic Embeddings" }
+        ]
+      }
+    }
+  },
+  "commands": {
+    "native": "auto",
+    "nativeSkills": false,
+    "restart": true,
+    "ownerDisplay": "raw"
+  },
+  "channels": {
+    "telegram": {
+      "enabled": false,
+      "dmPolicy": "pairing",
+      "botToken": "REEMPLAZAR_TELEGRAM_BOT_TOKEN",
+      "groupPolicy": "allowlist",
+      "streaming": "partial",
+      "commands": { "nativeSkills": false, "native": true },
+      "customCommands": [
+        { "command": "reg", "description": "Registrar requerimiento en factoria" }
+      ]
+    }
+  },
+  "gateway": {
+    "port": 18789,
+    "bind": "lan",
+    "controlUi": {
+      "allowedOrigins": [
+        "http://localhost:18789",
+        "http://127.0.0.1:18789"
+      ],
+      "dangerouslyAllowHostHeaderOriginFallback": true,
+      "dangerouslyDisableDeviceAuth": true
+    },
+    "auth": {
+      "token": "REEMPLAZAR_GATEWAY_TOKEN"
+    }
+  },
+  "agents": {
+    "defaults": {
+      "model": { "primary": "ollama/qwen2.5-coder:14b" }
+    },
+    "list": [
+      {
+        "id": "asistente-jislab",
+        "default": true,
+        "name": "Asistente JISLAB",
+        "model": "ollama/qwen2.5-coder:14b",
+        "workspace": "~/.openclaw/workspace-asistente-jislab",
+        "identity": { "name": "Asistente JISLAB", "theme": "Asistente tecnico para JISPARKING", "emoji": "🦞" },
+        "tools": {
+          "profile": "full",
+          "allow": ["group:ui", "group:runtime"],
+          "exec": { "host": "gateway" }
+        }
+      },
+      {
+        "id": "ops-despliegue-jislab",
+        "default": false,
+        "name": "Ops / Despliegue JISLAB",
+        "model": "ollama/qwen2.5-coder:14b",
+        "workspace": "~/.openclaw/workspace-ops-despliegue-jislab",
+        "identity": {
+          "name": "Ops / Despliegue JISLAB",
+          "theme": "Empaquetado, Docker, reverse proxy y despliegue a VPS.",
+          "emoji": "🦞"
+        },
+        "tools": {
+          "profile": "full",
+          "allow": ["group:ui", "group:runtime"],
+          "exec": { "host": "gateway" }
+        }
+      }
+    ]
+  },
+  "meta": {
+    "lastTouchedVersion": "2026.3.25",
+    "lastTouchedAt": "2026-03-25T12:00:00.000Z"
+  }
+}
